@@ -1,0 +1,51 @@
+/*
+ * Inspired from : http://geekgirllife.com/place-text-over-images-on-hover-without-javascript/
+ *
+ */
+
+ul.photo-grid {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+ul.photo-grid li {
+    display: inline-block;
+    height: 150px;
+    margin: 0 1em 1em 0;
+    position: relative;
+    width: 150px;
+}
+
+ul.photo-grid li figure {
+  margin: 0;
+}
+
+ul.photo-grid figcaption {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+ul.photo-grid li:hover figcaption {
+    opacity: 1;
+}
+
+ul.photo-grid figcaption {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}

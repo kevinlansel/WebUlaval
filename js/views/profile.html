@@ -1,0 +1,32 @@
+<div class="row margin-t-20 bg-gray-dark" ng-init="init()">
+    <div class="profile small-12 medium-12 large-12 columns padding-vert-30">
+        <div class="photo"><img src="http://www.gravatar.com/avatar/{{ email | gravatar }}?s=200"></div>
+        <p>{{ name }} - {{ email }}</p>
+        <p ng-if="!alreadyFollow && !isSameUser"><span class="button follow" ng-click="follow()">Follow</span></p>
+        <p ng-if="alreadyFollow && !isSameUser"><span class="button unfollow" ng-click="unfollow()">Unfollow</span></p>
+    </div>
+    <div class="small-12 medium-12 large-12 columns">
+        <div class="row">
+            <div class="small-12 medium-12 large-6 columns">
+                <h3>Playlist :</h3>
+                <hr />
+                <span ng-repeat="playlist in playlists">
+                    <a class="button small" href="#/playlists/{{playlist.id}}">{{ playlist.name }}</a>
+                </span>
+            </div>
+            <div class="small-12 medium-12 large-6 columns">
+                <h3>Following :</h3>
+                <hr />
+                <div class="friends row" ng-repeat="follow in following">
+                    <div class="small-3 medium-3 large-3 columns imageBlockFollowing">
+                        <img src="http://www.gravatar.com/avatar/{{ follow.email | gravatar }}?s=100">
+                    </div>
+                    <div class="small-9 medium-9 large-9 columns">
+                        <p><a ng-href="index.html#/users/{{follow.id}}">{{ follow.name }}</a></p>
+                        <p><a ng-href="index.html#/users/{{follow.id}}">{{ follow.email }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

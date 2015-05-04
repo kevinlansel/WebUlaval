@@ -1,0 +1,30 @@
+<div class="bg-gray-dark" ng-init="init()">
+    <div class="row">
+        <div class="large-12 columns">
+            <div>
+                <div class="bg-gray-light">
+                    <hr />
+                    <h3 class="padding-horiz-10">Les musiques de la playlist {{ playlist.name }}</h3>
+                    <hr />
+                </div>
+                <div class="text-center">
+                    <div ng-repeat="track in tracks" class="inline-display padding-5">
+                        <div>
+                            <figure class="figureTrack">
+                                <a class="th radius" href="#/albums/{{ track.collectionId }}">
+                                    <img ng-src="{{ track.artworkUrl100 }}" />
+                                </a>
+                                <figcaption>
+                                    <a href="#/albums/{{ track.collectionId }}">{{ track.trackName }}</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="panel" ng-if="tracks.length == 0">
+                        <h1 class="subheader">Aucune track n'a été trouvé</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

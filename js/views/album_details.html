@@ -1,0 +1,77 @@
+<div class="row margin-t-20">
+    <div ng-if="isLoading">
+        <div id="spinningSquaresG">
+            <div id="spinningSquaresG_1" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_2" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_3" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_4" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_5" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_6" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_7" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_8" class="spinningSquaresG">
+            </div>
+        </div>
+    </div>
+    <div ng-show="!isLoading" class="small-12 medium-12 large-12 columns">
+        <div class="row">
+            <div class="small-12 medium-4 large-4 columns text-center">
+                <img src={{image}} class="margin-10"/>
+                <p>{{genre}}</p>
+                <p>{{releaseDate}}</p>
+                <a class="itunes" href="{{itunesLink}}"></a>
+            </div>
+            <div class="small-12 medium-8 large-8 columns">
+                <div ng-if="display">
+                    <p>
+                        <span>Ajout de </span>
+                        <span ng-if="selectedItem.type == 'album'">l'album </span>
+                        <span ng-if="selectedItem.type == 'track'">la piste </span>
+                        <span class="red">{{ selectedItem.name }}</span>
+                        <span> à la playlist :</span>
+                        <select ng-model="selectedPlaylist.id" ng-options="playlist.id as playlist.name for playlist in playlists"></select>
+                        <a class="button secondary" ng-click="addToPlaylist()">Ajouter</a>
+                    </p>
+                </div>
+                <h1> {{name}}</h1>
+                <p><a href="index.html#/artists/{{artistId}}">{{artist}}</a></p>
+                <a class="button secondary tiny" ng-click="addAlbumToPlaylist()">Ajout de l'album dans une playlist</a>
+                <table role="grid" class="small-12 medium-12 large-12 columns tfoot-center">
+                    <thead>
+                    <tr>
+                        <th>N*</th>
+                        <th>Nom</th>
+                        <th>Durée</th>
+                        <th>Play</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in tracks">
+                        <td>{{ x.trackNumber }}</td>
+                        <td>{{ x.trackName }}</td>
+                        <td> {{x.duration}}</td>
+                        <td>
+                            <a ng-click="play(x.previewUrl)" class="button secondary tiny"><i class="fi-play"></i></a>
+                        </td>
+                        <td><a ng-click="addTrackToPlaylist(x)" class="button secondary tiny">+</a></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5">{{tracks.length}} Morceaux</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->

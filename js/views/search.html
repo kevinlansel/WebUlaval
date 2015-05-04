@@ -1,0 +1,80 @@
+<div class="row margin-t-20">
+    <div ng-if="isLoading">
+        <div id="spinningSquaresG">
+            <div id="spinningSquaresG_1" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_2" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_3" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_4" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_5" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_6" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_7" class="spinningSquaresG">
+            </div>
+            <div id="spinningSquaresG_8" class="spinningSquaresG">
+            </div>
+        </div>
+    </div>
+    <div ng-show="!isLoading" class="small-12 medium-12 large-12 columns">
+        <div class="row search-bar">
+            <form id="search-form">
+                <div class="medium-6 columns">
+                    <input type="text" placeholder="{{ search_query }}" ng-model="search_query" ng-value=""/>
+                </div>
+                <div class="medium-4 columns">
+                    <select ng-model="search_type" >
+                        <option value="">Global</option>
+                        <option value="album">Albums</option>
+                        <option value="artist">Artist</option>
+                        <option value="track">Track</option>
+                        <option value="user">Users</option>
+                    </select>
+                </div>
+                <div class="medium-2 columns">
+                    <button class="button" ng-click="onSearch()">Search</button>
+                </div>
+            </form>
+        </div>
+        <div ng-if="display">
+            <p>
+                <span>Ajout de </span>
+                <span ng-if="selectedItem.type == 'album'">l'album </span>
+                <span ng-if="selectedItem.type == 'track'">la piste </span>
+                <span class="red">{{ selectedItem.name }}</span>
+                <span> à la playlist :</span>
+                <select ng-model="selectedPlaylist.id" ng-options="playlist.id as playlist.name for playlist in playlists"></select>
+                <a class="button secondary" ng-click="addToPlaylist()">Ajouter</a>
+            </p>
+        </div>
+        <div class="row" ng-if="result_count <= 0" >No results</div>
+        <div class="row" ng-if="result_count > 0" >{{ result_count }} Search results for: {{ display_type }} {{ display_query }}</div>
+        <div class="row" ng-repeat="(resultTitle, value) in result">
+            <div ng-if="value.length > 0">
+                <h2>{{ resultTitle.charAt(0).toUpperCase() + resultTitle.substr(1) }}</h2>
+                <hr />
+                <div ng-repeat="r in value" class="clearfix">
+                    <img ng-src="{{ r.ico }}" />
+                    <a href="{{r.link}}">{{ r.name }}</a>
+                    <div ng-if="r.hasButton && r.typeButton === 'user' && r.id != currentUserId" class="buttonFollow">
+                        <p ng-if="!r.alreadyFollow"><span class="button follow" ng-click="follow(r)">Follow</span></p>
+                        <p ng-if="r.alreadyFollow"><span class="button unfollow" ng-click="unfollow(r)">Unfollow</span></p>
+                    </div>
+                    <div class="buttonMusic" ng-if="r.hasButton && r.typeButton === 'track'">
+                        <span class="button secondary medium" ng-click="play(r.url);">Play</span>
+                    </div>
+                    <div ng-if="r.hasButton && r.typeButton === 'track'" class="row">
+                        <select class="large-offset-4 medium-offset-3 large-6 medium-5 small-6 columns selectPlaylist" id="playlistSelect{{ r.object.trackId}}">
+                            <option value=""></option>
+                            <option ng-repeat="playlist in playlists" value="{{ playlist.id }}">{{ playlist.name }}</option>
+                        </select>
+                        <span class="button secondary medium" ng-click="addToPlaylist(r.object);">Add To Playlist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

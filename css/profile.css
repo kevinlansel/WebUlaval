@@ -1,0 +1,51 @@
+.profile {
+    text-align: center;
+}
+
+.profile .photo {
+    width: 128px;
+    margin: 0 auto;
+}
+
+.button.follow {
+    color: #f3f3f3;
+    background: rgb(96, 173, 103);
+}
+
+.button.unfollow {
+    color: #f3f3f3;
+    background: rgb(166, 24, 24);
+}
+
+.button.follow:hover {
+    background: rgb(34, 155, 45);
+}
+
+.button.unfollow:hover {
+    background: #CC3333;
+}
+
+.friends {
+    min-height: 52px;
+    padding: 10px 0;
+    line-height: 32px;
+}
+
+.friends .imageBlockFollowing {
+    border-right: 1px solid white;
+}
+
+.friends:nth-child(odd) {
+    background: #222222;
+}
+
+.friends p {
+    line-height: 50px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.friends p:nth-child(2) {
+    border-top: 1px solid white;
+}

@@ -1,0 +1,57 @@
+<div class="bg-gray-dark" ng-init="init()">
+  <div class="row">
+    <div class="large-12 columns" ng-show="tracks != null">
+      <div>
+        <div class="bg-gray-light">
+          <hr />
+          <h3 class="padding-horiz-10">Les musiques de la playlist {{ selectedPlaylist.name }}</h3>
+          <hr />
+        </div>
+        <div class="text-center">
+          <div ng-repeat="track in tracks" class="inline-display padding-5">
+            <div>
+              <a class="th radius" href="#/albums/{{ track.collectionId }}">
+                <img ng-src="{{ track.artworkUrl100 }}" />
+              </a>
+              <p class="i-cursor">
+                <i class="fi-x size-30 red padding-horiz-10  text-center" ng-click="deleteTrack(selectedPlaylist.id, track.trackId)"></i>
+                <i class="fi-play size-30 red padding-horiz-10  text-center" ng-click="playTrack(track.previewUrl)"></i>
+              </p>
+            </div>
+          </div>
+          <div class="panel" ng-if="tracks.length == 0">
+            <h1 class="subheader">Aucune track</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row padding-vert-30">
+        <div class="row">
+          <div class="left margin-x-8">
+            <ul class="pricing-table">
+              <li class="title">Créer une playlist</li>
+              <li class="bullet-item">
+                <input type="text" ng-model="newPlaylist.name" placeholder="Entrer le nom ici" />
+              </li>
+              <li class="bullet-item"><a href="#/playlists" ng-click="createPlaylist(p.id)">Créer</a></li>
+            </ul>
+          </div>
+          <div class="left margin-x-8" ng-repeat="p in playlists">
+            <ul class="pricing-table">
+              <li class="title">
+                <input type="text" ng-model="p.name" class="{{ !p.isDisabled ? 'disabled' : 'enabled' }}" placeholder="Nom de playlist vide" ng-disabled="{{p.isDisabled}}" />
+              </li>
+              <li class="bullet-item"><a href="#/playlists" ng-click="showTracks(p.id)">En savoir plus</a></li>
+              <li class="bullet-item" ng-if="!p.isDisabled"><a href="#/playlists" ng-click="modifyTitlePlaylist(p)" select-on-click>Modifier la playlist</a></li>
+              <li class="bullet-item" ng-if="p.isDisabled"><a href="#/playlists" ng-click="updatePlaylist(p)">Valider les modification</a></li>
+              <li class="bullet-item"><a href="#/playlists" ng-click="removePlaylist(p.id)">Supprimer</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="row margin-t-20">
+    <div class="small-12 medium-12 large-12 columns">
+        <h1>Sign-up on UBeat</h1>
+
+        <form name="login">
+            <label for="username">
+                Nom, Prénom
+                <input type="text" id="name" name="name" ng-pattern="" ng-model="name" required />
+            </label>
+            <label for="username">
+                Email
+                <input type="email" id="username" name="username" ng-pattern="" ng-model="username" required />
+            </label>
+            <label for="password">
+                Mot de passe
+                <input type="password" id="password" name="password" ng-model="password" required />
+            </label>
+            <button
+            class="button small"
+            ng-click="performSignup()"
+            ng-disabled="(login.username.$invalid || login.password.$invalid || login.name.$invalid || login.username.$error.length || login.password.$error.length || login.name.$error.length)"
+            ng-class="(login.username.$invalid || login.password.$invalid || login.name.$invalid || login.username.$error.length || login.password.$error.length || login.name.$error.length) ? 'disabled' : ''">
+                Créer mon compte
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="row margin-t-20">
+    <div class="small-12 medium-12 large-12 columns">
+        <h1>Login on UBeat</h1>
+
+        <form name="login">
+            <label for="username">
+                Email :
+                <input type="email" id="username" name="username" ng-pattern="" ng-model="username" required />
+            </label>
+            <label for="password">
+                Password :
+                <input type="password" id="password" name="password" ng-model="password" required />
+            </label>
+            <button class="button small" ng-click="performLogin()" ng-disabled="(login.username.$invalid || login.password.$invalid || login.username.$error.length || login.password.$error.length)" ng-class="(login.username.$invalid || login.password.$invalid || login.username.$error.length || login.password.$error.length) ? 'disabled' : ''">Se connecter</button>
+        </form>
+    </div>
+</div>

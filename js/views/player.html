@@ -1,0 +1,23 @@
+<div class="row full-width playerBlock">
+    <div class="small-6 medium-6 large-6 columns">
+        <wavesurfer url="" wave-color="#337ab7" progress-color="#FF6600" height="75" normalize="true">
+        </wavesurfer>
+    </div>
+    <div class="small-3 medium-3 large-3 columns playerCenter">
+        {{ timeFormated }}
+    </div>
+    <div class="small-3 medium-3 large-3 columns">
+        <ul>
+            <li>
+                <button href="" class="button info" ng-click="wavesurfer.playPause()" ng-disabled="!loaded">
+                    <i ng-class="(paused) ? 'fi-play' : 'fi-pause'"></i>
+                </button>
+            </li>
+            <li>
+                <button href="" class="button" ng-click="muteToggle()" ng-disabled="!loaded">
+                    <i ng-class="(!muted) ? 'fi-volume' : 'fi-volume-strike'"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

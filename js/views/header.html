@@ -1,0 +1,32 @@
+<nav class="navbar" role="navigation" ng-controller="HeaderController">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#/">U<span class="red-lighter">Beat</span></a></h1>
+    </li>
+  </ul>
+  <div class="menu {{ displayMenu ? 'bigMenu' : '' }}">
+    <div class="menuButton" ng-click="menuClick()">
+      <span>Menu</span>
+      <i class="fi-list size-50 padding-horiz-10"></i>
+    </div>
+    <div class="menuContent">
+      <ul class="top-bar-section {{ displayMenu ? 'displayMenu' : '' }}">
+        <li ng-if="loggedIn"><a href="#/users/{{ userId }}"><i class="fi-torso size-30 red padding-horiz-10"></i>Profile</a></li>
+        <li ng-if="loggedIn"><a href="#/playlists"><i class="fi-bookmark size-30 red padding-horiz-10"></i>Playlist</a></li>
+        <li ng-if="loggedIn"><a href="#/" ng-click="logout()"><i class="fi-power size-30 red padding-horiz-10"></i>Logout ({{ username }})</a></li>
+        <li ng-if="!loggedIn"><a href="#/login"><i class="fi-power size-30 red padding-horiz-10"></i>Sign-in</a></li>
+        <li ng-if="!loggedIn"><a href="#/signup"><i class="fi-clipboard-notes size-30 red padding-horiz-10"></i>Signup</a></li>
+      </ul>
+      <div class="searchForm {{ displayMenu ? 'displayMenu' : '' }}">
+        <div class="row collapse">
+          <div class="large-8 small-9 columns" id="searchInput">
+            <input type="text" placeholder="Find Stuff" ng-model="searchValue.content" />
+          </div>
+          <div class="large-4 small-3 columns">
+            <a class="alert button expand" ng-click="searchElement()">Search</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
